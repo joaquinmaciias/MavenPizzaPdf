@@ -10,7 +10,8 @@ Datos (csv) extraidos de: https://www.kaggle.com/datasets/neethimohan/maven-pizz
  - Start: activate
 4. Install packages for the python file: pip install -r requirements.txt
  Packages:  Fpdf, pandas, matplotlib, seaborn and re
-5. Run the python file: python MavenPizzaPdf.py
-6. Deactivate virtual enviroment:
+5. You need logo_icai.jpg on your repository to run the python file.
+6. Run the python file: python MavenPizzaPdf.py
+7. Deactivate virtual enviroment:
  - Move to: cd .\env\Scripts\
  - Start: deactivate
