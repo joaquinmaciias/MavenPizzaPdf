@@ -17,7 +17,9 @@ def Pdf(dict_pizza_orders: dict, dict_ingredients_weekly: dict):
 
     # Cabezera hojas
 
-    pdf.image('logo_icai.jpg', 10, 8, 40)
+    pdf.image('logo_icai.jpg', 10, 8, 40) # Logo en lal cabezera
+
+    # Actualizamos las posiciones x e y con: new_x=XPos.LMARGIN, new_y=YPos.NEXT
 
     pdf.set_font('Arial', 'BU', size = 25)
     pdf.cell(210,10, align = 'C', txt = 'Informe Maven Pizza', border = False, new_x=XPos.LMARGIN, new_y=YPos.NEXT)
@@ -27,13 +29,13 @@ def Pdf(dict_pizza_orders: dict, dict_ingredients_weekly: dict):
     pdf.cell(210,10, align = 'C', txt = 'Joaquin Mir Macias', border = False, new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
 
-    # Primera gráfica
+    # Primera gráfica, pizzas vendidas
 
     pdf.set_font('Arial', 'U', size = 15)
     pdf.cell(90,30, align = 'C', txt = 'Cantidad de pizzas vendidas 2015: ', border = False, new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.image('Pizzas_pedidas.jpg', 5, 55, 210)
 
-    # Segunda gráfica
+    # Segunda gráfica, ingresientes semanales
 
     pdf.set_font('Arial', 'U', size = 15)
     pdf.cell(90,209, align = 'C', txt = 'Cantidad de pizzas vendidas 2015: ', border = False, new_x=XPos.LMARGIN, new_y=YPos.NEXT)
@@ -52,6 +54,7 @@ def Pdf(dict_pizza_orders: dict, dict_ingredients_weekly: dict):
     pdf.add_page() # Añadimos una pagina
 
     # Titulo
+
     pdf.set_font('Arial','BU',14)
     pdf.cell(120,25, align = 'C', txt = 'Pizzas vendidas',new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
@@ -64,7 +67,7 @@ def Pdf(dict_pizza_orders: dict, dict_ingredients_weekly: dict):
     # Recorremos el dataframe final con los ingredientes añadiendo
     # en la columna correspondiente el nombre del ingrediente y las raciones necesarias
 
-    pdf.set_font('Arial','',10)
+    pdf.set_font('Arial','',10) # Datos al pdf
     for key in dict_pizza_orders:
 
         ingrediente = str(key)
@@ -99,7 +102,8 @@ def Pdf(dict_pizza_orders: dict, dict_ingredients_weekly: dict):
     # en la columna correspondiente el nombre del ingrediente y las raciones necesarias
 
     pdf.set_font('Arial','',10)
-    for key in dict_ingredients_weekly:
+
+    for key in dict_ingredients_weekly: # Datos al pdf
 
         ingrediente = str(key)
         cantidad = str(dict_ingredients_weekly[key])
@@ -193,10 +197,10 @@ def load_graphic_pizzas(pizza_rep: dict) -> pd.DataFrame :
 
     plt.rcParams.update({'font.size': 24})
     plt.figure(figsize=(50, 25))
-    ax = sns.barplot(x='pizza_id', y='quantity', data=df,palette='rocket_r')
+    ax = sns.barplot(x='pizza_id', y='quantity', data=df,palette='rocket_r')  # Gráfica pizzas vendidas
     ax.set_xticklabels(ax.get_xticklabels(),rotation=70)
     ax.set_title('Pizzas pedidas')
-    plt.savefig('Pizzas_pedidas.jpg')
+    plt.savefig('Pizzas_pedidas.jpg') # Guardamos la gráfica como una imagen jpg
 
 
 
@@ -218,10 +222,10 @@ def load_graphic_ingredients(dict_ingredients_weekly: dict,):
 
     plt.rcParams.update({'font.size': 24})
     plt.figure(figsize=(50, 25))
-    ax = sns.barplot(x='Cantidad', y='Ingredientes', data=df,palette='rocket_r')
+    ax = sns.barplot(x='Cantidad', y='Ingredientes', data=df,palette='rocket_r') # Gráfica ingredientes semanales
     ax.set_xticklabels(ax.get_xticklabels(),rotation=70)
     ax.set_title('Ingredientes semanales')
-    plt.savefig('Ingredientes_semanales.jpg')
+    plt.savefig('Ingredientes_semanales.jpg') # Guardamos la gráfica como una imagen jpg
 
 
 
